@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		795AD3991CF4F404004A27AD /* PRPBMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */; };
+		795AD39B1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */; };
+		795AD39D1CF53D5D004A27AD /* PRPBMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */; };
+		795AD3A51CF54449004A27AD /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 795AD3A41CF54449004A27AD /* Menu.json */; };
+		795AD3A71CF54C3B004A27AD /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795AD3A61CF54C3B004A27AD /* SwiftyJSON.framework */; };
 		79FF25F91CF3C45D00EEBDB2 /* PRPBAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF25F81CF3C45D00EEBDB2 /* PRPBAppDelegate.swift */; };
 		79FF25FB1CF3C45D00EEBDB2 /* PRPBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF25FA1CF3C45D00EEBDB2 /* PRPBViewController.swift */; };
 		79FF25FE1CF3C45D00EEBDB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FF25FC1CF3C45D00EEBDB2 /* Main.storyboard */; };
@@ -35,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMasterViewController.swift; sourceTree = "<group>"; };
+		795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderDetailViewController.swift; sourceTree = "<group>"; };
+		795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMenu.swift; sourceTree = "<group>"; };
+		795AD3A41CF54449004A27AD /* Menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Menu.json; sourceTree = "<group>"; };
+		795AD3A61CF54C3B004A27AD /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		79FF25F51CF3C45C00EEBDB2 /* Point Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Point Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FF25F81CF3C45D00EEBDB2 /* PRPBAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRPBAppDelegate.swift; sourceTree = "<group>"; };
 		79FF25FA1CF3C45D00EEBDB2 /* PRPBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRPBViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				795AD3A71CF54C3B004A27AD /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,9 +87,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		795AD39E1CF53D69004A27AD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */,
+				79FF25F81CF3C45D00EEBDB2 /* PRPBAppDelegate.swift */,
+				79FF25FA1CF3C45D00EEBDB2 /* PRPBViewController.swift */,
+				795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		795AD39F1CF53D88004A27AD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				79FF26041CF3C45D00EEBDB2 /* LaunchScreen.storyboard */,
+				79FF25FC1CF3C45D00EEBDB2 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		795AD3A21CF53DB6004A27AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				79FF25FF1CF3C45D00EEBDB2 /* Point_Buddy.xcdatamodeld */,
+				795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		795AD3A31CF53DD7004A27AD /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				79FF26071CF3C45D00EEBDB2 /* Info.plist */,
+				795AD3A41CF54449004A27AD /* Menu.json */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
 		79FF25EC1CF3C45C00EEBDB2 = {
 			isa = PBXGroup;
 			children = (
+				795AD3A61CF54C3B004A27AD /* SwiftyJSON.framework */,
 				79FF25F71CF3C45D00EEBDB2 /* Point Buddy */,
 				79FF260F1CF3C45D00EEBDB2 /* Point BuddyTests */,
 				79FF261A1CF3C45D00EEBDB2 /* Point BuddyUITests */,
@@ -99,13 +149,11 @@
 		79FF25F71CF3C45D00EEBDB2 /* Point Buddy */ = {
 			isa = PBXGroup;
 			children = (
-				79FF25F81CF3C45D00EEBDB2 /* PRPBAppDelegate.swift */,
-				79FF25FA1CF3C45D00EEBDB2 /* PRPBViewController.swift */,
-				79FF25FC1CF3C45D00EEBDB2 /* Main.storyboard */,
+				795AD3A21CF53DB6004A27AD /* Model */,
+				795AD39E1CF53D69004A27AD /* ViewControllers */,
+				795AD39F1CF53D88004A27AD /* Storyboards */,
+				795AD3A31CF53DD7004A27AD /* Config */,
 				79FF26021CF3C45D00EEBDB2 /* Assets.xcassets */,
-				79FF26041CF3C45D00EEBDB2 /* LaunchScreen.storyboard */,
-				79FF26071CF3C45D00EEBDB2 /* Info.plist */,
-				79FF25FF1CF3C45D00EEBDB2 /* Point_Buddy.xcdatamodeld */,
 			);
 			path = "Point Buddy";
 			sourceTree = "<group>";
@@ -138,6 +186,7 @@
 				79FF25F11CF3C45C00EEBDB2 /* Sources */,
 				79FF25F21CF3C45C00EEBDB2 /* Frameworks */,
 				79FF25F31CF3C45C00EEBDB2 /* Resources */,
+				795AD3A81CF54C71004A27AD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -234,6 +283,7 @@
 			files = (
 				79FF26061CF3C45D00EEBDB2 /* LaunchScreen.storyboard in Resources */,
 				79FF26031CF3C45D00EEBDB2 /* Assets.xcassets in Resources */,
+				795AD3A51CF54449004A27AD /* Menu.json in Resources */,
 				79FF25FE1CF3C45D00EEBDB2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,14 +304,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		795AD3A81CF54C71004A27AD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		79FF25F11CF3C45C00EEBDB2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				795AD3991CF4F404004A27AD /* PRPBMasterViewController.swift in Sources */,
 				79FF25FB1CF3C45D00EEBDB2 /* PRPBViewController.swift in Sources */,
 				79FF25F91CF3C45D00EEBDB2 /* PRPBAppDelegate.swift in Sources */,
 				79FF26011CF3C45D00EEBDB2 /* Point_Buddy.xcdatamodeld in Sources */,
+				795AD39D1CF53D5D004A27AD /* PRPBMenu.swift in Sources */,
+				795AD39B1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +475,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Point Buddy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tuptakemedia.Point-Buddy";
@@ -416,6 +490,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Point Buddy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tuptakemedia.Point-Buddy";

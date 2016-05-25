@@ -1,0 +1,61 @@
+{
+    "Menu": {
+        "Pizza": [{
+                  "kind": "Regular",
+                  "price": "$10.00"
+                  }, {
+                  "kind": "Chili-Infused",
+                  "price": "$10.75"
+                  }],
+        "Toppings": [{
+                     "kind": "Pepperoni",
+                     "price": "$1.00"
+                     }, {
+                     "kind": "Prosciutto",
+                     "price": "$1.25"
+                     }, {
+                     "kind": "Black Olive",
+                     "price": "$0.75"
+                     }, {
+                     "kind": "Bell Peppers",
+                     "price": "$0.75"
+                     }, {
+                     "kind": "Broccoli",
+                     "price": "$0.75"
+                     }, {
+                     "kind": "Spinach",
+                     "price": "$0.75"
+                     }, {
+                     "kind": "Mushrooms",
+                     "price": "$0.75"
+                     }, {
+                     "kind": "Banana Peppers",
+                     "price": "$0.75"
+                     }, {
+                     "kind": "Ham",
+                     "price": "$1.00"
+                     }, {
+                     "kind": "Red Onions",
+                     "price": "$0.75"
+                     }, {
+                     "kind": "Pineapple",
+                     "price": "$1.00 "
+                     }, {
+                     "kind": "Jalapenos",
+                     "price": "$1.00 "
+                     }],
+        "Drinks": [{
+                   "kind": "Coke",
+                   "price": "$1.50"
+                   }, {
+                   "kind": "Sprite",
+                   "price": "$1.50"
+                   }, {
+                   "kind": "Water",
+                   "price": "$1.50"
+                   }, {
+                   "kind": "Juice",
+                   "price": "$1.50"
+                   }]
+    }
+}
