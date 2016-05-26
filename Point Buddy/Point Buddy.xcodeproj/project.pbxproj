@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7901458A1CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790145881CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.swift */; };
+		7901458B1CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790145891CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib */; };
+		7901458E1CF793BF00DB7BB6 /* PRPBProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901458D1CF793BF00DB7BB6 /* PRPBProtocols.swift */; };
+		790145911CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901458F1CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift */; };
+		790145921CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790145901CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib */; };
 		795AD3991CF4F404004A27AD /* PRPBMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */; };
 		795AD39B1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */; };
 		795AD39D1CF53D5D004A27AD /* PRPBMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */; };
@@ -40,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		790145881CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMenuItemTableViewCell.swift; sourceTree = "<group>"; };
+		790145891CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRPBMenuItemTableViewCell.xib; sourceTree = "<group>"; };
+		7901458D1CF793BF00DB7BB6 /* PRPBProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBProtocols.swift; sourceTree = "<group>"; };
+		7901458F1CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderItemTableViewCell.swift; sourceTree = "<group>"; };
+		790145901CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRPBOrderItemTableViewCell.xib; sourceTree = "<group>"; };
 		795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMasterViewController.swift; sourceTree = "<group>"; };
 		795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderDetailViewController.swift; sourceTree = "<group>"; };
 		795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMenu.swift; sourceTree = "<group>"; };
@@ -87,11 +97,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		790145871CF76F4700DB7BB6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				790145881CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.swift */,
+				790145891CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib */,
+				7901458F1CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift */,
+				790145901CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		7901458C1CF7939D00DB7BB6 /* PRPBProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				7901458D1CF793BF00DB7BB6 /* PRPBProtocols.swift */,
+			);
+			name = PRPBProtocols;
+			sourceTree = "<group>";
+		};
 		795AD39E1CF53D69004A27AD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */,
-				79FF25F81CF3C45D00EEBDB2 /* PRPBAppDelegate.swift */,
 				79FF25FA1CF3C45D00EEBDB2 /* PRPBViewController.swift */,
 				795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */,
 			);
@@ -149,8 +177,11 @@
 		79FF25F71CF3C45D00EEBDB2 /* Point Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				79FF25F81CF3C45D00EEBDB2 /* PRPBAppDelegate.swift */,
 				795AD3A21CF53DB6004A27AD /* Model */,
+				790145871CF76F4700DB7BB6 /* Views */,
 				795AD39E1CF53D69004A27AD /* ViewControllers */,
+				7901458C1CF7939D00DB7BB6 /* PRPBProtocols */,
 				795AD39F1CF53D88004A27AD /* Storyboards */,
 				795AD3A31CF53DD7004A27AD /* Config */,
 				79FF26021CF3C45D00EEBDB2 /* Assets.xcassets */,
@@ -281,6 +312,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7901458B1CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib in Resources */,
+				790145921CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib in Resources */,
 				79FF26061CF3C45D00EEBDB2 /* LaunchScreen.storyboard in Resources */,
 				79FF26031CF3C45D00EEBDB2 /* Assets.xcassets in Resources */,
 				795AD3A51CF54449004A27AD /* Menu.json in Resources */,
@@ -328,10 +361,13 @@
 			files = (
 				795AD3991CF4F404004A27AD /* PRPBMasterViewController.swift in Sources */,
 				79FF25FB1CF3C45D00EEBDB2 /* PRPBViewController.swift in Sources */,
+				790145911CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift in Sources */,
 				79FF25F91CF3C45D00EEBDB2 /* PRPBAppDelegate.swift in Sources */,
 				79FF26011CF3C45D00EEBDB2 /* Point_Buddy.xcdatamodeld in Sources */,
 				795AD39D1CF53D5D004A27AD /* PRPBMenu.swift in Sources */,
+				7901458A1CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.swift in Sources */,
 				795AD39B1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift in Sources */,
+				7901458E1CF793BF00DB7BB6 /* PRPBProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

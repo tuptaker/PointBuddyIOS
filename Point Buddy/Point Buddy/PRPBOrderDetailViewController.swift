@@ -9,7 +9,7 @@
 import UIKit
 
 class PRPBOrderDetailViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,4 +32,18 @@ class PRPBOrderDetailViewController: UIViewController {
     }
     */
 
+}
+
+extension PRPBOrderDetailViewController: MenuSelectionDelegate {
+    func menuItemSelected(menuItem: String) {
+        print("Selected \(menuItem)")
+    }
+    
+    func menuItemAdded(menuItem: String, menuPrice: String) {
+        print("Added \(menuItem)")
+    }
+    
+    func menuItemRemoved(menuItem: String, menuPrice: String) {
+        print("Removed \(menuItem)")
+    }
 }

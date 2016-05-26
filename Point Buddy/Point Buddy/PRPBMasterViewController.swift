@@ -9,10 +9,12 @@
 import UIKit
 import SwiftyJSON
 
-class PRPBMasterViewController: UITableViewController {
 
+class PRPBMasterViewController: UITableViewController {
+    
     // MARK: PRPBMasterViewController properties
     var menuJSON: JSON?
+    weak var menuDelegate: MenuSelectionDelegate?
     
     enum MenuItemType: Int {
         case Pizza
@@ -48,6 +50,9 @@ class PRPBMasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuJSON = self.instantiateMenuModelFromFile("Menu", type: "json")
+        let menuItemCellXib = UINib(nibName: "PRPBMenuItemTableViewCell", bundle: nil)
+        self.tableView.registerNib(menuItemCellXib, forCellReuseIdentifier: "menuItemTableViewCell")
+        
     }
     
     
@@ -91,29 +96,38 @@ class PRPBMasterViewController: UITableViewController {
         return numRowsForSection
     }
     
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
-        var labelForCell = "\(indexPath.row)"
-        var currMenuItemType:MenuItemType
-        
-        if let itemType = MenuItemType(rawValue: indexPath.section), menuObj = self.menuJSON {
-            currMenuItemType = itemType
+        let menuItemCell = UITableViewCell()
+        if let menuItemCell = tableView.dequeueReusableCellWithIdentifier("menuItemTableViewCell", forIndexPath: indexPath) as? PRPBMenuItemTableViewCell {
+            var menuItemTitle = ""
+            var menuItemPrice = ""
+            var currMenuItemType:MenuItemType
             
-            switch currMenuItemType {
-            case .Pizza:
-                labelForCell = (menuObj["Menu"]["Pizza"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
-            case .Toppings:
-                labelForCell = (menuObj["Menu"]["Toppings"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
-            case .Drinks:
-                labelForCell = (menuObj["Menu"]["Drinks"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
+            if let itemType = MenuItemType(rawValue: indexPath.section), menuObj = self.menuJSON {
+                currMenuItemType = itemType
+                
+                switch currMenuItemType {
+                case .Pizza:
+                    menuItemTitle = (menuObj["Menu"]["Pizza"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
+                    menuItemPrice = (menuObj["Menu"]["Pizza"][indexPath.row].dictionaryValue["price"]?.stringValue)!
+                case .Toppings:
+                    menuItemTitle = (menuObj["Menu"]["Toppings"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
+                    menuItemPrice = (menuObj["Menu"]["Toppings"][indexPath.row].dictionaryValue["price"]?.stringValue)!
+                case .Drinks:
+                    menuItemTitle = (menuObj["Menu"]["Drinks"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
+                    menuItemPrice = (menuObj["Menu"]["Drinks"][indexPath.row].dictionaryValue["price"]?.stringValue)!
+                }
             }
             
+            menuItemCell.menuItemLabel.text = menuItemTitle
+            menuItemCell.menuItemPriceLabel.text = menuItemPrice
+            menuItemCell.menuDelegate = self
         }
         
-        cell.textLabel!.text = labelForCell
-        return cell
+        return menuItemCell
     }
+    
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var titleForSection = "Section \(section)"
@@ -133,5 +147,52 @@ class PRPBMasterViewController: UITableViewController {
         }
         
         return titleForSection
+    }
+
+    
+    // MARK: UITableViewDelegate methods
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var menuItem = "section:\(indexPath.section), row:\(indexPath.row)"
+        if let menuObj = self.menuJSON, itemType = MenuItemType(rawValue: indexPath.section) {
+            
+            switch itemType {
+            case .Pizza:
+                menuItem = (menuObj["Menu"]["Pizza"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
+            case .Toppings:
+                menuItem = (menuObj["Menu"]["Toppings"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
+            case .Drinks:
+                menuItem = (menuObj["Menu"]["Drinks"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
+            }
+        }
+
+        self.menuDelegate?.menuItemSelected(menuItem)
+        
+        if let detailViewController = self.menuDelegate as? PRPBOrderDetailViewController {
+            splitViewController?.showDetailViewController(detailViewController.navigationController!, sender: nil)
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let menuItemCell = cell as? PRPBMenuItemTableViewCell {
+            
+        }
+    }
+
+}
+
+ 
+extension PRPBMasterViewController: MenuSelectionDelegate {
+    func menuItemSelected(menuItem: String) {
+        print("Selected \(menuItem)")
+    }
+    
+    func menuItemAdded(menuItem: String, menuPrice: String) {
+        print("Added \(menuItem)")
+    }
+    
+    func menuItemRemoved(menuItem: String, menuPrice: String) {
+        print("Removed \(menuItem)")
     }
 }
