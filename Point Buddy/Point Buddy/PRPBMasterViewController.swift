@@ -181,8 +181,8 @@ extension PRPBMasterViewController {
     
     
     func showDetailIfNecessary() {
-        if let detailViewController = self.menuDelegate as? PRPBOrderDetailViewController {
-            splitViewController?.showDetailViewController(detailViewController.navigationController!, sender: nil)
+        if let orderTableVC = self.orderEditDelegate as? PRPBOrderTableViewController {
+            splitViewController?.showDetailViewController(orderTableVC.orderParentVC!.navigationController!, sender: nil)
         }
     }
 }

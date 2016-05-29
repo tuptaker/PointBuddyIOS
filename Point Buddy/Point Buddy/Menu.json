@@ -39,10 +39,10 @@
                      "price": "$0.75"
                      }, {
                      "kind": "Pineapple",
-                     "price": "$1.00 "
+                     "price": "$1.00"
                      }, {
                      "kind": "Jalapenos",
-                     "price": "$1.00 "
+                     "price": "$1.00"
                      }],
         "Drinks": [{
                    "kind": "Coke",

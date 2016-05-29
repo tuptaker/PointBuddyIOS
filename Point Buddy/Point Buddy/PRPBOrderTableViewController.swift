@@ -9,6 +9,7 @@
 import UIKit
 import Money
 
+// MARK: Data Model
 struct PRPBOrderItem {
     var itemName: String?
     var itemPrice: USD?
@@ -18,6 +19,7 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
 
     // MARK: PRPBOrderDetailViewController properties
     var currentOrderList: [PRPBOrderItem] = []
+    var orderParentVC: PRPBOrderDetailViewController?
     
     // MARK: UIViewController overrides
     override func viewDidLoad() {
@@ -61,27 +63,25 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
         return cell
     }
     
+    // MARK: PRPBOrderTableViewController
+    func refreshTotalCost() {
+        let allItemPrices = self.currentOrderList.map { return $0.itemPrice}
+        let subTotal = allItemPrices.reduce(USD(0)) { return $0 + $1!}
+        let tax = USD(subTotal * 0.0625)
+        self.orderParentVC?.subtotalLabel.text = "\(subTotal)"
+        self.orderParentVC?.taxLabel.text = "\(tax)"
+        self.orderParentVC?.totalCostLabel.text = "\(subTotal + tax)"
+        self.orderParentVC?.totalCost = tax + subTotal
+    }
     
-//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        let orderItemForIdx = self.currentOrderList[indexPath.row]
-//        
-//        if let orderItemCell = cell as? PRPBOrderItemTableViewCell {
-//            orderItemCell.orderItemKindLabel.text = orderItemForIdx.itemName
-//            orderItemCell.orderItemPriceLabel.text = "\(orderItemForIdx.itemPrice!)"
-//            orderItemCell.currentIdxPath = indexPath
-//        }
-//    }
-    
-    
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        self.currentOrderList.removeAtIndex(indexPath.row)
-//        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-//    }
-//
-//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        return true
-//    }
+    func clearCurrentOrder() {
+        self.currentOrderList.removeAll()
+        self.refreshTotalCost()
+        self.tableView.reloadData()
+    }
+
 }
+
 
 extension PRPBOrderTableViewController {
     // MARK: OrderEditDelegate
@@ -89,17 +89,18 @@ extension PRPBOrderTableViewController {
         let item = PRPBOrderItem(itemName: orderItem, itemPrice: USD(Float(String(orderItemPrice.characters.dropFirst()))!))
         self.currentOrderList.append(item)
         let idxPath = NSIndexPath(forRow: self.currentOrderList.count - 1, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([idxPath], withRowAnimation: UITableViewRowAnimation.None)
+        self.tableView.insertRowsAtIndexPaths([idxPath], withRowAnimation: UITableViewRowAnimation.Bottom)
+        self.refreshTotalCost()
     }
     
     
     func removedOrderItem(orderItem: String, orderItemPrice: String, indexPath: NSIndexPath) {
-        //self.tableView.beginUpdates()
+        self.tableView.beginUpdates()
         self.currentOrderList.removeAtIndex(indexPath.row)
-        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-        //self.tableView.endUpdates()
-        //self.tableView.reloadData()
-        //self.view.setNeedsLayout()
-        //self.view.setNeedsDisplay()
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
+        let idxSet = NSIndexSet(index: 0)
+        self.tableView.reloadSections(idxSet, withRowAnimation: UITableViewRowAnimation.None)
+        self.tableView.endUpdates()
+        self.refreshTotalCost()
     }
 }
