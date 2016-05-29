@@ -13,16 +13,18 @@ import CoreData
 class PRPBAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var masterVC: PRPBMasterViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let leftNavController = splitViewController.viewControllers.first as! UINavigationController
-        let masterViewController = leftNavController.topViewController as! PRPBMasterViewController
+        self.masterVC = leftNavController.topViewController as? PRPBMasterViewController
         let rightNavController = splitViewController.viewControllers.last as! UINavigationController
         let detailViewController = rightNavController.topViewController as! PRPBOrderDetailViewController
-        masterViewController.menuDelegate = detailViewController
+        //let orderListViewController = detailViewController.childViewControllers[0] as! PRPBOrderTableViewController
+        //self.masterVC!.menuDelegate = orderListViewController
+        //self.masterVC!.orderEditDelegate = orderListViewController
         detailViewController.navigationItem.leftItemsSupplementBackButton = true
         detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         

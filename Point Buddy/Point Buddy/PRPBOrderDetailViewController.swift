@@ -7,43 +7,17 @@
 //
 
 import UIKit
+import Money
 
 class PRPBOrderDetailViewController: UIViewController {
-    
+
+    // MARK: UIViewController overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension PRPBOrderDetailViewController: MenuSelectionDelegate {
-    func menuItemSelected(menuItem: String) {
-        print("Selected \(menuItem)")
-    }
-    
-    func menuItemAdded(menuItem: String, menuPrice: String) {
-        print("Added \(menuItem)")
-    }
-    
-    func menuItemRemoved(menuItem: String, menuPrice: String) {
-        print("Removed \(menuItem)")
     }
 }

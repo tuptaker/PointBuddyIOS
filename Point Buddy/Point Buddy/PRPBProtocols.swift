@@ -18,5 +18,5 @@ protocol MenuSelectionDelegate: class {
 
 protocol OrderEditDelegate: class {
     func addedOrderItem(orderItem: String, orderItemPrice: String)
-    func removedOrderItem(orderItem: String, orderItemPrice: String)
+    func removedOrderItem(orderItem: String, orderItemPrice: String, indexPath: NSIndexPath)
 }

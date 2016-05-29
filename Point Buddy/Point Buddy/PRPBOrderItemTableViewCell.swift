@@ -9,19 +9,27 @@
 import UIKit
 
 class PRPBOrderItemTableViewCell: UITableViewCell {
+    
+    // MARK: PRPBOrderItemTableViewCell outlets
     @IBOutlet var removeOrderItemButton: UIButton!
     @IBOutlet var addOrderItemButton: UIButton!
     @IBOutlet var orderItemKindLabel: UILabel!
     @IBOutlet var orderItemPriceLabel: UILabel!
 
+    
+    // MARK: PRPBOrderItemTableViewCell properties
     weak var orderDelegate: OrderEditDelegate?
-
+    var currentIdxPath: NSIndexPath?
+    
+    
+    // MARK: UIView overrides
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
     
+    // MARK: UITableView overrides
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -29,8 +37,9 @@ class PRPBOrderItemTableViewCell: UITableViewCell {
     }
     
     
+    // MARK: IBActions
     @IBAction func removeOrderItem(sender: UIButton) {
-        self.orderDelegate?.removedOrderItem(self.orderItemKindLabel.text!, orderItemPrice: self.orderItemPriceLabel.text!)
+        self.orderDelegate?.removedOrderItem(self.orderItemKindLabel.text!, orderItemPrice: self.orderItemPriceLabel.text!, indexPath: self.currentIdxPath!)
     }
     
     

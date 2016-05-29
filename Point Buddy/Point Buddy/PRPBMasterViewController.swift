@@ -10,12 +10,12 @@ import UIKit
 import SwiftyJSON
 
 
-class PRPBMasterViewController: UITableViewController {
+class PRPBMasterViewController: UITableViewController, MenuSelectionDelegate {
     
     // MARK: PRPBMasterViewController properties
     var menuJSON: JSON?
     weak var menuDelegate: MenuSelectionDelegate?
-    
+    weak var orderEditDelegate: OrderEditDelegate?
     enum MenuItemType: Int {
         case Pizza
         case Toppings
@@ -152,47 +152,37 @@ class PRPBMasterViewController: UITableViewController {
     
     // MARK: UITableViewDelegate methods
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var menuItem = "section:\(indexPath.section), row:\(indexPath.row)"
-        if let menuObj = self.menuJSON, itemType = MenuItemType(rawValue: indexPath.section) {
-            
-            switch itemType {
-            case .Pizza:
-                menuItem = (menuObj["Menu"]["Pizza"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
-            case .Toppings:
-                menuItem = (menuObj["Menu"]["Toppings"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
-            case .Drinks:
-                menuItem = (menuObj["Menu"]["Drinks"][indexPath.row].dictionaryValue["kind"]?.stringValue)!
-            }
-        }
-
-        self.menuDelegate?.menuItemSelected(menuItem)
-        
-        if let detailViewController = self.menuDelegate as? PRPBOrderDetailViewController {
-            splitViewController?.showDetailViewController(detailViewController.navigationController!, sender: nil)
-        }
-        
         self.tableView.reloadData()
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if let menuItemCell = cell as? PRPBMenuItemTableViewCell {
-            
-        }
     }
 
 }
 
- 
-extension PRPBMasterViewController: MenuSelectionDelegate {
+
+// MARK: PRPBMasterViewController extension
+extension PRPBMasterViewController {
+    
     func menuItemSelected(menuItem: String) {
+        self.showDetailIfNecessary()
         print("Selected \(menuItem)")
     }
     
+    
     func menuItemAdded(menuItem: String, menuPrice: String) {
+        self.showDetailIfNecessary()
+        self.orderEditDelegate?.addedOrderItem(menuItem, orderItemPrice: menuPrice)
         print("Added \(menuItem)")
     }
     
+    
     func menuItemRemoved(menuItem: String, menuPrice: String) {
+        self.showDetailIfNecessary()
         print("Removed \(menuItem)")
+    }
+    
+    
+    func showDetailIfNecessary() {
+        if let detailViewController = self.menuDelegate as? PRPBOrderDetailViewController {
+            splitViewController?.showDetailViewController(detailViewController.navigationController!, sender: nil)
+        }
     }
 }
