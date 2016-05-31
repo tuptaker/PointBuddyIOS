@@ -129,6 +129,10 @@ class PRPBMasterViewController: UITableViewController, MenuSelectionDelegate {
     }
     
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 84.0
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var titleForSection = "Section \(section)"
         var currMenuItemType:MenuItemType

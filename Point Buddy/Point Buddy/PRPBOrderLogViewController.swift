@@ -139,7 +139,7 @@ class PRPBOrderLogViewController: UIViewController, UITableViewDataSource, UITab
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        mailComposerVC.setToRecipients(["order@phoenixrising.pizza"])
+        mailComposerVC.setToRecipients(["expense.phoenix@gmail.com"])
         mailComposerVC.setSubject("PRPB Order Log")
         mailComposerVC.setMessageBody("See attched logs", isHTML: false)
         return mailComposerVC

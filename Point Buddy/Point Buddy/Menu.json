@@ -2,10 +2,10 @@
     "Menu": {
         "Pizza": [{
                   "kind": "Regular",
-                  "price": "$10.00"
+                  "price": "$8.00"
                   }, {
                   "kind": "Chili-Infused",
-                  "price": "$10.75"
+                  "price": "$8.75"
                   }],
         "Toppings": [{
                      "kind": "Pepperoni",

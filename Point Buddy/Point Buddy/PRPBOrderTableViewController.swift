@@ -63,6 +63,12 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
         return cell
     }
     
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 84.0
+    }
+    
+    
     // MARK: PRPBOrderTableViewController
     func refreshTotalCost() {
         let allItemPrices = self.currentOrderList.map { return $0.itemPrice}

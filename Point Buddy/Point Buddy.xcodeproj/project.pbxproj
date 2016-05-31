@@ -17,6 +17,7 @@
 		7939C0BB1CFB2D5000CB401D /* PRPBOrderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939C0BA1CFB2D5000CB401D /* PRPBOrderLog.swift */; };
 		7939C0BE1CFB431D00CB401D /* PRPBOrderLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939C0BC1CFB431D00CB401D /* PRPBOrderLogTableViewCell.swift */; };
 		7939C0BF1CFB431D00CB401D /* PRPBOrderLogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7939C0BD1CFB431D00CB401D /* PRPBOrderLogTableViewCell.xib */; };
+		793FCE9F1CFD152500759369 /* PRPBOrderConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FCE9E1CFD152500759369 /* PRPBOrderConfirmViewController.swift */; };
 		795AD3991CF4F404004A27AD /* PRPBMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */; };
 		795AD39B1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */; };
 		795AD39D1CF53D5D004A27AD /* PRPBMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */; };
@@ -62,6 +63,7 @@
 		7939C0BA1CFB2D5000CB401D /* PRPBOrderLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderLog.swift; sourceTree = "<group>"; };
 		7939C0BC1CFB431D00CB401D /* PRPBOrderLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderLogTableViewCell.swift; sourceTree = "<group>"; };
 		7939C0BD1CFB431D00CB401D /* PRPBOrderLogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRPBOrderLogTableViewCell.xib; sourceTree = "<group>"; };
+		793FCE9E1CFD152500759369 /* PRPBOrderConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderConfirmViewController.swift; sourceTree = "<group>"; };
 		795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMasterViewController.swift; sourceTree = "<group>"; };
 		795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderDetailViewController.swift; sourceTree = "<group>"; };
 		795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMenu.swift; sourceTree = "<group>"; };
@@ -120,7 +122,6 @@
 				790145891CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib */,
 				7901458F1CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift */,
 				790145901CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib */,
-				79DE71301CF9DF3700520DB7 /* PRPBOrderTableViewController.swift */,
 				7939C0BC1CFB431D00CB401D /* PRPBOrderLogTableViewCell.swift */,
 				7939C0BD1CFB431D00CB401D /* PRPBOrderLogTableViewCell.xib */,
 			);
@@ -138,10 +139,12 @@
 		795AD39E1CF53D69004A27AD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				79DE71301CF9DF3700520DB7 /* PRPBOrderTableViewController.swift */,
 				795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */,
 				79FF25FA1CF3C45D00EEBDB2 /* PRPBViewController.swift */,
 				795AD3981CF4F404004A27AD /* PRPBMasterViewController.swift */,
 				7939C0B81CFB2A4C00CB401D /* PRPBOrderLogViewController.swift */,
+				793FCE9E1CFD152500759369 /* PRPBOrderConfirmViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				TargetAttributes = {
 					79FF25F41CF3C45C00EEBDB2 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = HW7KXG8JJS;
 					};
 					79FF260B1CF3C45D00EEBDB2 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -385,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				793FCE9F1CFD152500759369 /* PRPBOrderConfirmViewController.swift in Sources */,
 				7939C0B91CFB2A4C00CB401D /* PRPBOrderLogViewController.swift in Sources */,
 				795AD3991CF4F404004A27AD /* PRPBMasterViewController.swift in Sources */,
 				79FF25FB1CF3C45D00EEBDB2 /* PRPBViewController.swift in Sources */,
@@ -489,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -529,7 +534,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -541,6 +546,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -550,6 +557,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tuptakemedia.Point-Buddy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -557,6 +565,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -566,6 +576,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tuptakemedia.Point-Buddy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
