@@ -15,7 +15,8 @@ class PRPBOrderDetailViewController: UIViewController, UITextFieldDelegate {
     var confirmOrderClearAlert: UIAlertController?
     var confirmOrderAlert: UIAlertController?
     var orderTime: NSDate?
-    var totalCost: USD?
+    var currOrderCost = PRPBCost(tax: 0, subtotal: 0)
+    
     
     //MARK: IBOutlets
     @IBOutlet var subtotalLabel: UILabel!
@@ -41,8 +42,41 @@ class PRPBOrderDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateCostLabels()
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let confirmVC = segue.destinationViewController as? PRPBOrderConfirmViewController {
+            
+            var customerNameStr = "Unknown Customer"
+            if let name = self.customerNameField.text {
+                customerNameStr = name
+            }
+            
+            confirmVC.finalCost = self.currOrderCost
+            confirmVC.orderList = (self.tableVC?.currentOrderList)!
+            let order = PRPBOrder(customerName: customerNameStr, timeOfOrder: NSDate(), totalCostOfOrder:self.currOrderCost.totalCost(), orderList: (self.tableVC?.currentOrderList)!)
+            PRPBOrderLog.sharedInstance.orders.append(order)
+            
+            //self.tableVC?.clearCurrentOrder()
+            //self.customerNameField.text = ""
+        }
+    }
+    
+    
+    //MARK: PRPBOrderTableViewController
+    func updateCostLabels() {
+        self.taxLabel.text = "\(self.currOrderCost.tax)"
+        self.subtotalLabel.text = "\(self.currOrderCost.subtotal)"
+        self.totalCostLabel.text = "\(self.currOrderCost.totalCost())"
     }
     
     
@@ -73,7 +107,7 @@ class PRPBOrderDetailViewController: UIViewController, UITextFieldDelegate {
         self.confirmOrderAlert = UIAlertController(title: "Confirm Order: \(self.totalCostLabel.text!)", message: "Order for \(customerNameStr)\n added to order list on\n \(dateStr)", preferredStyle: .Alert)
         self.confirmOrderAlert?.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         self.confirmOrderAlert?.addAction(UIAlertAction(title: "Confirmed", style: .Default, handler: { (action) in
-            let order = PRPBOrder(customerName: customerNameStr, timeOfOrder: NSDate(), totalCostOfOrder:self.totalCost, orderList: (self.tableVC?.currentOrderList)!)
+            let order = PRPBOrder(customerName: customerNameStr, timeOfOrder: NSDate(), totalCostOfOrder:self.currOrderCost.totalCost(), orderList: (self.tableVC?.currentOrderList)!)
             PRPBOrderLog.sharedInstance.orders.append(order)
             self.tableVC?.clearCurrentOrder()
             self.customerNameField.text = ""

@@ -24,6 +24,7 @@
 		795AD3A51CF54449004A27AD /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 795AD3A41CF54449004A27AD /* Menu.json */; };
 		798EF3D31CF8709A003C7B06 /* ValueCoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798EF3D21CF8709A003C7B06 /* ValueCoding.framework */; };
 		798EF3D51CF8709E003C7B06 /* Money.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798EF3D41CF8709E003C7B06 /* Money.framework */; };
+		79B63A6E1D02E49800E9FA6F /* PRPBCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B63A6D1D02E49800E9FA6F /* PRPBCost.swift */; };
 		79DE71311CF9DF3700520DB7 /* PRPBOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DE71301CF9DF3700520DB7 /* PRPBOrderTableViewController.swift */; };
 		79FF25F91CF3C45D00EEBDB2 /* PRPBAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF25F81CF3C45D00EEBDB2 /* PRPBAppDelegate.swift */; };
 		79FF25FB1CF3C45D00EEBDB2 /* PRPBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF25FA1CF3C45D00EEBDB2 /* PRPBViewController.swift */; };
@@ -70,6 +71,7 @@
 		795AD3A41CF54449004A27AD /* Menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Menu.json; sourceTree = "<group>"; };
 		798EF3D21CF8709A003C7B06 /* ValueCoding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ValueCoding.framework; path = Carthage/Build/iOS/ValueCoding.framework; sourceTree = "<group>"; };
 		798EF3D41CF8709E003C7B06 /* Money.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Money.framework; path = Carthage/Build/iOS/Money.framework; sourceTree = "<group>"; };
+		79B63A6D1D02E49800E9FA6F /* PRPBCost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBCost.swift; sourceTree = "<group>"; };
 		79DE71301CF9DF3700520DB7 /* PRPBOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderTableViewController.swift; sourceTree = "<group>"; };
 		79FF25F51CF3C45C00EEBDB2 /* Point Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Point Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FF25F81CF3C45D00EEBDB2 /* PRPBAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRPBAppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				79FF25FF1CF3C45D00EEBDB2 /* Point_Buddy.xcdatamodeld */,
 				795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */,
 				7939C0BA1CFB2D5000CB401D /* PRPBOrderLog.swift */,
+				79B63A6D1D02E49800E9FA6F /* PRPBCost.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				793FCE9F1CFD152500759369 /* PRPBOrderConfirmViewController.swift in Sources */,
 				7939C0B91CFB2A4C00CB401D /* PRPBOrderLogViewController.swift in Sources */,
 				795AD3991CF4F404004A27AD /* PRPBMasterViewController.swift in Sources */,
+				79B63A6E1D02E49800E9FA6F /* PRPBCost.swift in Sources */,
 				79FF25FB1CF3C45D00EEBDB2 /* PRPBViewController.swift in Sources */,
 				790145911CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift in Sources */,
 				79FF25F91CF3C45D00EEBDB2 /* PRPBAppDelegate.swift in Sources */,

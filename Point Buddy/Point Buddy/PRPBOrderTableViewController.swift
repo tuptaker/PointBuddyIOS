@@ -20,6 +20,7 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
     // MARK: PRPBOrderDetailViewController properties
     var currentOrderList: [PRPBOrderItem] = []
     var orderParentVC: PRPBOrderDetailViewController?
+    var currCost: PRPBCost = PRPBCost(tax: 0, subtotal: 0)
     
     // MARK: UIViewController overrides
     override func viewDidLoad() {
@@ -73,12 +74,12 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
     func refreshTotalCost() {
         let allItemPrices = self.currentOrderList.map { return $0.itemPrice}
         let subTotal = allItemPrices.reduce(USD(0)) { return $0 + $1!}
-        let tax = USD(subTotal * 0.0625)
-        self.orderParentVC?.subtotalLabel.text = "\(subTotal)"
-        self.orderParentVC?.taxLabel.text = "\(tax)"
-        self.orderParentVC?.totalCostLabel.text = "\(subTotal + tax)"
-        self.orderParentVC?.totalCost = tax + subTotal
+        self.currCost.subtotal = subTotal
+        self.currCost.tax = USD(subTotal * 0.0625)
+        self.orderParentVC?.currOrderCost = self.currCost
+        self.orderParentVC?.updateCostLabels()
     }
+    
     
     func clearCurrentOrder() {
         self.currentOrderList.removeAll()
