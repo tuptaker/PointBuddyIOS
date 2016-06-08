@@ -52,7 +52,6 @@ class PRPBMasterViewController: UITableViewController, MenuSelectionDelegate {
         self.menuJSON = self.instantiateMenuModelFromFile("Menu", type: "json")
         let menuItemCellXib = UINib(nibName: "PRPBMenuItemTableViewCell", bundle: nil)
         self.tableView.registerNib(menuItemCellXib, forCellReuseIdentifier: "menuItemTableViewCell")
-        
     }
     
     

@@ -13,6 +13,10 @@ struct PRPBOrder {
     var customerName: String?
     var timeOfOrder: NSDate?
     var totalCostOfOrder: USD?
+    var tax: USD?
+    var amountTendered: USD?
+    var isCash: Bool?
+    var isCredit: Bool?
     var orderList: [PRPBOrderItem] = []
 }
 

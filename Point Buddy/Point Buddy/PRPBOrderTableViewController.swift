@@ -72,8 +72,8 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
     
     // MARK: PRPBOrderTableViewController
     func refreshTotalCost() {
-        let allItemPrices = self.currentOrderList.map { return $0.itemPrice}
-        let subTotal = allItemPrices.reduce(USD(0)) { return $0 + $1!}
+        let allItemPrices = self.currentOrderList.map {return $0.itemPrice}
+        let subTotal = allItemPrices.reduce(USD(0)) {return $0 + $1!}
         self.currCost.subtotal = subTotal
         self.currCost.tax = USD(subTotal * 0.0625)
         self.orderParentVC?.currOrderCost = self.currCost
@@ -83,6 +83,8 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
     
     func clearCurrentOrder() {
         self.currentOrderList.removeAll()
+        self.orderParentVC?.customerName = ""
+        self.orderParentVC?.mustClear = true
         self.refreshTotalCost()
         self.tableView.reloadData()
     }

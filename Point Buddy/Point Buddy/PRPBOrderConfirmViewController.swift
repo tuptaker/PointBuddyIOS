@@ -31,9 +31,10 @@ class PRPBOrderConfirmViewController: UIViewController {
     var orderList: [PRPBOrderItem] = []
     var orderSummaryStr: String?
     var tendered: USD = 0
-    var isCash: Bool = true
     var change: USD = 0
-    
+    var customerName = ""
+    var tableVC: PRPBOrderTableViewController?
+    var orderDetailVC: PRPBOrderDetailViewController?
     
     //MARK: UIViewController overrides
     override func viewDidLoad() {
@@ -43,6 +44,9 @@ class PRPBOrderConfirmViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if let nameField = self.customerNameField, nameStr = nameField.text where nameStr == "" {
+            self.customerNameField.text = self.customerName
+        }
         self.updateOrderConfirmLabels()
     }
     
@@ -60,18 +64,63 @@ class PRPBOrderConfirmViewController: UIViewController {
         self.totalLabel.text = "\(self.finalCost.totalCost())"
         self.tenderedButton.setTitle("Tendered: \(self.tendered)", forState: .Normal)
         self.changeLabel.text = "\(self.change)"
+        let orderItems: [String] = self.orderList.map {return $0.itemName!}
+        let orderListStr = orderItems.joinWithSeparator(", ")
+        self.customerOrderTextView.text = orderListStr
     }
     
     
-    //MARK: IBAction
+    func dismissConfirmScreenAndFinishOrder() {
+        self.tableVC?.clearCurrentOrder()
+        self.dismissViewControllerAnimated(true) {
+            let order = PRPBOrder(customerName: self.customerNameField.text, timeOfOrder: NSDate(), totalCostOfOrder:self.finalCost.totalCost(), tax:self.finalCost.tax, amountTendered:self.tendered, isCash:self.cashOrCreditToggle.on, isCredit:!self.cashOrCreditToggle.on, orderList: (self.orderList))
+            PRPBOrderLog.sharedInstance.orders.append(order)
+        }
+    }
+    
+    
+    //MARK: IBActions
     @IBAction func orderConfirmed(sender: UIButton) {
-        self.dismissViewControllerAnimated(true) { 
+        
+        if self.tendered < self.finalCost.totalCost() {
+            let promptForPayment = UIAlertController(title: "Need Payment from Customer",
+                                                          message: "You are still \(self.finalCost.totalCost() - tendered) short of the final bill - please return to confirmation screen, collect the payment from customer, tap 'tendered' button and enter amount.", preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "Back to Confirmation Screen", style: UIAlertActionStyle.Default, handler: {
+                alert -> Void in
+            })
+            
+            promptForPayment.addAction(okAction)
+            self.presentViewController(promptForPayment, animated: true) {
+            }
+        }
+        else if self.customerNameField.text == "" {
+            
+            let promptForCustomerName = UIAlertController(title: "Need Customer Name",
+                                                          message: "You forgot to enter the customer name - please enter it here:", preferredStyle: .Alert)
+            promptForCustomerName.addTextFieldWithConfigurationHandler { (textField : UITextField!) -> Void in
+            }
+            
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+                alert -> Void in
+                let customerNameStr = (promptForCustomerName.textFields![0] as UITextField).text
+                if customerNameStr == "" {
+                    self.customerNameField.text = "Unknown"
+                }
+                self.dismissConfirmScreenAndFinishOrder()
+            })
+            
+            promptForCustomerName.addAction(okAction)
+            self.presentViewController(promptForCustomerName, animated: true) {
+            }
+            
+        } else {
+            self.dismissConfirmScreenAndFinishOrder()
         }
     }
 
     
     @IBAction func orderCanceled(sender: UIButton) {
-        self.dismissViewControllerAnimated(true) { 
+        self.dismissViewControllerAnimated(true) {
         }
     }
     
