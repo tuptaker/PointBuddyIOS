@@ -19,7 +19,7 @@ class PRPBOrderItemTableViewCell: UITableViewCell {
     
     // MARK: PRPBOrderItemTableViewCell properties
     weak var orderDelegate: OrderEditDelegate?
-    var currentIdxPath: NSIndexPath?
+    var currentIdxPath: IndexPath?
     
     
     // MARK: UIView overrides
@@ -30,7 +30,7 @@ class PRPBOrderItemTableViewCell: UITableViewCell {
 
     
     // MARK: UITableView overrides
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -38,12 +38,12 @@ class PRPBOrderItemTableViewCell: UITableViewCell {
     
     
     // MARK: IBActions
-    @IBAction func removeOrderItem(sender: UIButton) {
+    @IBAction func removeOrderItem(_ sender: UIButton) {
         self.orderDelegate?.removedOrderItem(self.orderItemKindLabel.text!, orderItemPrice: self.orderItemPriceLabel.text!, indexPath: self.currentIdxPath!)
     }
     
     
-    @IBAction func addOrderItem(sender: UIButton) {
+    @IBAction func addOrderItem(_ sender: UIButton) {
         self.orderDelegate?.addedOrderItem(self.orderItemKindLabel.text!, orderItemPrice: self.orderItemPriceLabel.text!)
     }
 }

@@ -22,20 +22,20 @@ class PRPBMenuItemTableViewCell: UITableViewCell {
     }
 
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
 
-    @IBAction func removeItemFromOrder(sender: UIButton) {
+    @IBAction func removeItemFromOrder(_ sender: UIButton) {
         self.menuDelegate?.menuItemRemoved(self.menuItemLabel.text!, menuPrice: self.menuItemPriceLabel.text!)
         print("Remove \(menuItemLabel.text)")
     }
     
     
-    @IBAction func addItemToOrder(sender: UIButton) {
+    @IBAction func addItemToOrder(_ sender: UIButton) {
         self.menuDelegate?.menuItemAdded(self.menuItemLabel.text!, menuPrice: self.menuItemPriceLabel.text!)
         print("Add \(menuItemLabel.text)")
     }

@@ -42,9 +42,9 @@ class PRPBOrderConfirmViewController: UIViewController {
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let nameField = self.customerNameField, nameStr = nameField.text where nameStr == "" {
+        if let nameField = self.customerNameField, let nameStr = nameField.text, nameStr == "" {
             self.customerNameField.text = self.customerName
         }
         self.updateOrderConfirmLabels()
@@ -62,45 +62,45 @@ class PRPBOrderConfirmViewController: UIViewController {
         self.taxLabel.text = "\(self.finalCost.tax)"
         self.subtotalLabel.text = "\(self.finalCost.subtotal)"
         self.totalLabel.text = "\(self.finalCost.totalCost())"
-        self.tenderedButton.setTitle("Tendered: \(self.tendered)", forState: .Normal)
+        self.tenderedButton.setTitle("Tendered: \(self.tendered)", for: .normal)
         self.changeLabel.text = "\(self.change)"
         let orderItems: [String] = self.orderList.map {return $0.itemName!}
-        let orderListStr = orderItems.joinWithSeparator(", ")
+        let orderListStr = orderItems.joined(separator: ", ")
         self.customerOrderTextView.text = orderListStr
     }
     
     
     func dismissConfirmScreenAndFinishOrder() {
         self.tableVC?.clearCurrentOrder()
-        self.dismissViewControllerAnimated(true) {
-            let order = PRPBOrder(customerName: self.customerNameField.text, timeOfOrder: NSDate(), totalCostOfOrder:self.finalCost.totalCost(), tax:self.finalCost.tax, amountTendered:self.tendered, isCash:self.cashOrCreditToggle.on, isCredit:!self.cashOrCreditToggle.on, orderList: (self.orderList))
+        self.dismiss(animated: true) {
+            let order = PRPBOrder(customerName: self.customerNameField.text, timeOfOrder: Date(), totalCostOfOrder:self.finalCost.totalCost(), tax:self.finalCost.tax, amountTendered:self.tendered, isCash:self.cashOrCreditToggle.isOn, isCredit:!self.cashOrCreditToggle.isOn, orderList: (self.orderList))
             PRPBOrderLog.sharedInstance.orders.append(order)
         }
     }
     
     
     //MARK: IBActions
-    @IBAction func orderConfirmed(sender: UIButton) {
+    @IBAction func orderConfirmed(_ sender: UIButton) {
         
         if self.tendered < self.finalCost.totalCost() {
             let promptForPayment = UIAlertController(title: "Need Payment from Customer",
-                                                          message: "You are still \(self.finalCost.totalCost() - tendered) short of the final bill - please return to confirmation screen, collect the payment from customer, tap 'tendered' button and enter amount.", preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "Back to Confirmation Screen", style: UIAlertActionStyle.Default, handler: {
+                                                          message: "You are still \(self.finalCost.totalCost() - tendered) short of the final bill - please return to confirmation screen, collect the payment from customer, tap 'tendered' button and enter amount.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Back to Confirmation Screen", style: UIAlertActionStyle.default, handler: {
                 alert -> Void in
             })
             
             promptForPayment.addAction(okAction)
-            self.presentViewController(promptForPayment, animated: true) {
+            self.present(promptForPayment, animated: true) {
             }
         }
         else if self.customerNameField.text == "" {
             
             let promptForCustomerName = UIAlertController(title: "Need Customer Name",
-                                                          message: "You forgot to enter the customer name - please enter it here:", preferredStyle: .Alert)
-            promptForCustomerName.addTextFieldWithConfigurationHandler { (textField : UITextField!) -> Void in
+                                                          message: "You forgot to enter the customer name - please enter it here:", preferredStyle: .alert)
+            promptForCustomerName.addTextField { (textField : UITextField!) -> Void in
             }
             
-            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {
                 alert -> Void in
                 let customerNameStr = (promptForCustomerName.textFields![0] as UITextField).text
                 if customerNameStr == "" {
@@ -110,7 +110,7 @@ class PRPBOrderConfirmViewController: UIViewController {
             })
             
             promptForCustomerName.addAction(okAction)
-            self.presentViewController(promptForCustomerName, animated: true) {
+            self.present(promptForCustomerName, animated: true) {
             }
             
         } else {
@@ -119,47 +119,47 @@ class PRPBOrderConfirmViewController: UIViewController {
     }
 
     
-    @IBAction func orderCanceled(sender: UIButton) {
-        self.dismissViewControllerAnimated(true) {
+    @IBAction func orderCanceled(_ sender: UIButton) {
+        self.dismiss(animated: true) {
         }
     }
     
     
-    @IBAction func paymentTendered(sender: UIButton) {
-        let tenderedInputController = UIAlertController(title: "Amount Tendered", message: "Enter Amount Tendered Here:", preferredStyle: .Alert)
+    @IBAction func paymentTendered(_ sender: UIButton) {
+        let tenderedInputController = UIAlertController(title: "Amount Tendered", message: "Enter Amount Tendered Here:", preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {
             alert -> Void in
             let tenderedAmtField = tenderedInputController.textFields![0] as UITextField
-            tenderedAmtField.keyboardType = UIKeyboardType.NumbersAndPunctuation
-            let amtStrWithoutCurrencyChars = tenderedAmtField.text?.stringByReplacingOccurrencesOfString("US$", withString: "")
+            tenderedAmtField.keyboardType = UIKeyboardType.numbersAndPunctuation
+            let amtStrWithoutCurrencyChars = tenderedAmtField.text?.replacingOccurrences(of: "US$", with: "")
             self.tendered = USD(Float(amtStrWithoutCurrencyChars!)!)
             self.change = self.tendered - self.finalCost.totalCost()
             self.updateOrderConfirmLabels()
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: {
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
         })
         
-        tenderedInputController.addTextFieldWithConfigurationHandler { (textField : UITextField!) -> Void in
+        tenderedInputController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "\(self.tendered)"
         }
         
         tenderedInputController.addAction(okAction)
         tenderedInputController.addAction(cancelAction)
-        self.presentViewController(tenderedInputController, animated: true) { 
+        self.present(tenderedInputController, animated: true) { 
         }
     }
     
     
-    @IBAction func toggleIsCash(sender: UISwitch) {
-        if sender.on {
-            self.isCashLabel.textColor = UIColor.blackColor()
-            self.isCreditLabel.textColor = UIColor.lightGrayColor()
+    @IBAction func toggleIsCash(_ sender: UISwitch) {
+        if sender.isOn {
+            self.isCashLabel.textColor = UIColor.black
+            self.isCreditLabel.textColor = UIColor.lightGray
         } else {
-            self.isCashLabel.textColor = UIColor.lightGrayColor()
-            self.isCreditLabel.textColor = UIColor.blackColor()
+            self.isCashLabel.textColor = UIColor.lightGray
+            self.isCreditLabel.textColor = UIColor.black
         }
     }
 

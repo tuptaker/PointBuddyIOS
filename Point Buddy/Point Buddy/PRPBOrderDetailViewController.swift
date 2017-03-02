@@ -14,7 +14,7 @@ class PRPBOrderDetailViewController: UIViewController, UITextFieldDelegate {
     var tableVC: PRPBOrderTableViewController?
     var confirmOrderClearAlert: UIAlertController?
     var confirmOrderAlert: UIAlertController?
-    var orderTime: NSDate?
+    var orderTime: Date?
     var currOrderCost = PRPBCost(tax: 0, subtotal: 0)
     var customerName = ""
     var mustClear = false
@@ -34,9 +34,9 @@ class PRPBOrderDetailViewController: UIViewController, UITextFieldDelegate {
         self.tableVC = self.childViewControllers[0] as? PRPBOrderTableViewController
         tableVC?.orderParentVC = self
         
-        self.confirmOrderClearAlert = UIAlertController(title: "Clear Current Order?", message: "This action will remove all items from the current order. Are you sure you want to clear this order?", preferredStyle: .Alert)
-        self.confirmOrderClearAlert?.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        self.confirmOrderClearAlert?.addAction(UIAlertAction(title: "Clear", style: .Default, handler: { (action) in
+        self.confirmOrderClearAlert = UIAlertController(title: "Clear Current Order?", message: "This action will remove all items from the current order. Are you sure you want to clear this order?", preferredStyle: .alert)
+        self.confirmOrderClearAlert?.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.confirmOrderClearAlert?.addAction(UIAlertAction(title: "Clear", style: .default, handler: { (action) in
             if let tableVC = self.tableVC {
                 tableVC.clearCurrentOrder()
                 self.customerName = ""
@@ -46,7 +46,7 @@ class PRPBOrderDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if self.mustClear {
             self.mustClear = false
@@ -61,8 +61,8 @@ class PRPBOrderDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let confirmVC = segue.destinationViewController as? PRPBOrderConfirmViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let confirmVC = segue.destination as? PRPBOrderConfirmViewController {
             
             var customerNameStr = "Unknown Customer"
             if let name = self.customerNameField.text {
@@ -86,16 +86,16 @@ class PRPBOrderDetailViewController: UIViewController, UITextFieldDelegate {
     
     
     //MARK: UITextFieldDelegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
     
     //MARK: IBActions
-    @IBAction func clearOrder(sender: UIButton) {
+    @IBAction func clearOrder(_ sender: UIButton) {
         if let confirmClear = self.confirmOrderClearAlert {
-            self.presentViewController(confirmClear, animated: true, completion: nil)
+            self.present(confirmClear, animated: true, completion: nil)
         }
     }
 

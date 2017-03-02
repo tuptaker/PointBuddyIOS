@@ -49,29 +49,34 @@ class ValueCodingTests: XCTestCase {
         XCTAssertEqual(unarchived!, item)
     }
 
+    func test__single_incorrect_archiving() {
+        let unarchived = Baz.decode(item.encoded)
+        XCTAssertNil(unarchived)
+    }
+
     func test__multiple_archiving() {
-        let unarchived = Foo.decode(items.encoded)
+        let unarchived: [Foo] = Foo.decode(items.encoded)
         XCTAssertEqual(unarchived, items)
     }
 
     func test__nested_archiving() {
-        let unarchived = Foo.decode(nested.encoded)
+        let unarchived: [[Foo]] = Foo.decode(nested.encoded)
         XCTAssertEqual(unarchived.count, 1)
         XCTAssertEqual(unarchived[0], nested[0])
     }
 
     func test__with_single_nil() {
-        let empty: AnyObject? = .None
+        let empty: AnyObject? = .none
         XCTAssertNil(Foo.decode(empty))
     }
 
     func test__with_sequence_nil() {
-        let empty: [AnyObject]? = .None
+        let empty: [AnyObject]? = .none
         XCTAssertTrue(Foo.decode(empty).isEmpty)
     }
 
     func test__with_nested_nil() {
-        let empty: [[AnyObject]]? = .None
+        let empty: [[AnyObject]]? = .none
         XCTAssertTrue(Foo.decode(empty).isEmpty)
     }
 

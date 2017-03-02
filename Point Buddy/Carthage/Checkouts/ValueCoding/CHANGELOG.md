@@ -1,3 +1,17 @@
+# 2.1.0
+This is for Xcode 8.1, Swift 3.0.1
+
+# 2.0.0
+This is the Swift 3.0 compatible version.
+
+The key change here is that `CodingType` has been renamed to `CodingProtocol` in accordance with Swift 3.0 naming style.
+
+# 1.5.0
+This is a Swift 2.3 compatible version
+
+# 1.4.0
+1. [[VCD-19](https://github.com/danthorpe/ValueCoding/pull/19)]: Recreates the project to use a single multi-platform framework target.
+
 # 1.3.0
 1. [[VCD-13](https://github.com/danthorpe/ValueCoding/pull/13)]: Switches test coverage reporting to Coveralls. Also adds SwiftLint rules into the project and CI.
 2. [[VCD-14](https://github.com/danthorpe/ValueCoding/pull/14)]: Updates to Swift 2.2 syntax. :)

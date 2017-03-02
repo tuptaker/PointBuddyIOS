@@ -19,7 +19,7 @@ class PRPBOrderLogViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         let orderLogCellXib = UINib(nibName: "PRPBOrderLogTableViewCell", bundle: nil)
-        self.orderLogTableView.registerNib(orderLogCellXib, forCellReuseIdentifier: "orderLogTableViewCell")
+        self.orderLogTableView.register(orderLogCellXib, forCellReuseIdentifier: "orderLogTableViewCell")
     }
 
     
@@ -30,31 +30,31 @@ class PRPBOrderLogViewController: UIViewController, UITableViewDataSource, UITab
 
     
     //MARK: UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return PRPBOrderLog.sharedInstance.orders.count
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let orderForIdx = PRPBOrderLog.sharedInstance.orders[indexPath.row]
         
         var cell = UITableViewCell()
-        if let orderLogCell = tableView.dequeueReusableCellWithIdentifier("orderLogTableViewCell") as? PRPBOrderLogTableViewCell {
+        if let orderLogCell = tableView.dequeueReusableCell(withIdentifier: "orderLogTableViewCell") as? PRPBOrderLogTableViewCell {
             orderLogCell.customerNameLabel.text = orderForIdx.customerName
             orderLogCell.totalCostLabel.text = "\(orderForIdx.totalCostOfOrder!)"
             
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd-MMM-yyyy, h:mm a"
-            let dateStr = dateFormatter.stringFromDate(NSDate())
+            let dateStr = dateFormatter.string(from: Date())
             orderLogCell.dateTimeOfOrderLabel.text = dateStr
 
             let orderItems: [String] = orderForIdx.orderList.map {return $0.itemName!}
-            let orderListStr = orderItems.joinWithSeparator(",")
+            let orderListStr = orderItems.joined(separator: ",")
             
             orderLogCell.orderDetailsLabel.text = orderListStr
             cell = orderLogCell
@@ -64,30 +64,30 @@ class PRPBOrderLogViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 114
     }
     
     
     //MARK: IBActions
-    @IBAction func dismissOrderLog(sender: UIButton) {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: { 
+    @IBAction func dismissOrderLog(_ sender: UIButton) {
+        self.presentingViewController?.dismiss(animated: true, completion: { 
             print("Dismissed PRPBOrderLogViewController")
         })
     }
 
     
-    @IBAction func syncOrderLog(sender: UIButton) {
-        let dateFormatter = NSDateFormatter()
+    @IBAction func syncOrderLog(_ sender: UIButton) {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MMM-yyyy-h:mm-a"
-        let dateStr = dateFormatter.stringFromDate(NSDate())
+        let dateStr = dateFormatter.string(from: Date())
         let orderLogFileName = "PRPBOrderLog-\(dateStr).prpb"
         var orderLogRawText = ""
         
         let orders = PRPBOrderLog.sharedInstance.orders
 
         // Column headers
-        orderLogRawText = orderLogRawText.stringByAppendingString("Customer Name,Time,Pizza,Pepperoni,Prosciutto,Black Olive,Bell Peppers,Broccoli,Spinach,Mushrooms,Banana Peppers,Ham,Red Onions,Pineapple,Jalapenos,Coke,Sprite,Water,Juice,Subtotal,Tax,Cash or Credit,Tendered,Change\n")
+        orderLogRawText = orderLogRawText + "Customer Name,Time,Pizza,Pepperoni,Prosciutto,Black Olive,Bell Peppers,Broccoli,Spinach,Mushrooms,Banana Peppers,Ham,Red Onions,Pineapple,Jalapenos,Coke,Sprite,Water,Juice,Subtotal,Tax,Cash or Credit,Tendered,Change\n"
         
         for currOrder in orders {
             let costOfPizzas = currOrder.orderList.filter({ (currItem) -> Bool in
@@ -231,32 +231,32 @@ class PRPBOrderLogViewController: UIViewController, UITableViewDataSource, UITab
 
             let lineStr = "\(currOrder.customerName!),\(currOrder.timeOfOrder!),\(costOfPizzas),\(costOfPepperonis),\(costOfProsciutto),\(costOfBlackOlives),\(costOfBellPeppers),\(costOfBroccoli),\(costOfSpinach),\(costOfMushrooms),\(costOfBananaPeppers),\(costOfHam),\(costOfRedOnions),\(costOfPineapple),\(costOfJalapenos),\(costOfCokes),\(costOfSprites),\(costOfWaters),\(costOfJuice),\(currOrder.totalCostOfOrder! - currOrder.tax!),\(currOrder.tax!),\(cashOrCredit),\(currOrder.amountTendered!),\(currOrder.amountTendered! - currOrder.totalCostOfOrder!)\n"
 
-            orderLogRawText = orderLogRawText.stringByAppendingString(lineStr)
+            orderLogRawText = orderLogRawText.appending(lineStr)
         }
     
-        if let dir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-            let path = NSURL(fileURLWithPath: dir).URLByAppendingPathComponent(orderLogFileName)
+        if let dir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first {
+            let path = URL(fileURLWithPath: dir).appendingPathComponent(orderLogFileName)
             
             //writing
             do {
-                try orderLogRawText.writeToURL(path, atomically: false, encoding: NSUTF8StringEncoding)
+                try orderLogRawText.write(to: path, atomically: false, encoding: String.Encoding.utf8)
             }
             catch {/* error handling here */}
         }
     }
     
     
-    @IBAction func emailAllOrderLogs(sender: UIButton) {
-        let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-        var attachments: [NSData] = []
+    @IBAction func emailAllOrderLogs(_ sender: UIButton) {
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        var attachments: [Data] = []
         
         do {
-            let directoryUrls = try  NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsUrl, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())
+            let directoryUrls = try  FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions())
             print(directoryUrls)
             let orderLogs = directoryUrls.filter{ $0.pathExtension == "prpb" }//.map{ $0.lastPathComponent }
             for log in orderLogs {
                 //TODO fix this warning!!!
-                attachments.append(NSData(contentsOfURL: log)!)
+                attachments.append(try! Data(contentsOf: log))
                 //attachments.append(NSData.dataWithContentsOfMappedFile("test")! as! NSData)
             }
             print("TEXT FILES:\n" + orderLogs.description)
@@ -274,7 +274,7 @@ class PRPBOrderLogViewController: UIViewController, UITableViewDataSource, UITab
         }
         
         if MFMailComposeViewController.canSendMail() {
-            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            self.present(mailComposeViewController, animated: true, completion: nil)
         } else {
             self.showSendMailErrorAlert()
         }
@@ -286,26 +286,26 @@ class PRPBOrderLogViewController: UIViewController, UITableViewDataSource, UITab
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         mailComposerVC.setToRecipients(["expense.phoenix@gmail.com"])
-        mailComposerVC.setSubject("PRPB Order Log\(NSDate())")
+        mailComposerVC.setSubject("PRPB Order Log\(Date())")
         mailComposerVC.setMessageBody("See attched logs", isHTML: false)
         return mailComposerVC
     }
     
     func showSendMailErrorAlert() {
-        let alertCtrlr = UIAlertController(title: "Error", message: "Unable to send email. Have you configured your inbox?", preferredStyle: .Alert)
-       alertCtrlr.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-       self.presentViewController(alertCtrlr, animated: true, completion: nil)
+        let alertCtrlr = UIAlertController(title: "Error", message: "Unable to send email. Have you configured your inbox?", preferredStyle: .alert)
+       alertCtrlr.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+       self.present(alertCtrlr, animated: true, completion: nil)
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
 
 extension Array {
-    func isPizza(menuItem: String) -> Bool {
+    func isPizza(_ menuItem: String) -> Bool {
         return (menuItem == "Regular") || (menuItem == "Chili-Infused")
     }
 }

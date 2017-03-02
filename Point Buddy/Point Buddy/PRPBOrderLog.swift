@@ -11,7 +11,7 @@ import Money
 
 struct PRPBOrder {
     var customerName: String?
-    var timeOfOrder: NSDate?
+    var timeOfOrder: Date?
     var totalCostOfOrder: USD?
     var tax: USD?
     var amountTendered: USD?
@@ -23,7 +23,7 @@ struct PRPBOrder {
 class PRPBOrderLog {
     static let sharedInstance = PRPBOrderLog()
     var orders: [PRPBOrder]
-    private init(){
+    fileprivate init(){
         orders = []
     }
 }

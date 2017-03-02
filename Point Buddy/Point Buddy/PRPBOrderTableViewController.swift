@@ -25,10 +25,10 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
     // MARK: UIViewController overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appDlg = UIApplication.sharedApplication().delegate as! PRPBAppDelegate
+        let appDlg = UIApplication.shared.delegate as! PRPBAppDelegate
         appDlg.masterVC?.orderEditDelegate = self
         let orderItemCellXib = UINib(nibName: "PRPBOrderItemTableViewCell", bundle: nil)
-        self.tableView.registerNib(orderItemCellXib, forCellReuseIdentifier: "orderItemTableViewCell")
+        self.tableView.register(orderItemCellXib, forCellReuseIdentifier: "orderItemTableViewCell")
     }
 
 
@@ -39,21 +39,21 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
 
     
     // MARK: UITableViewDataSource
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.currentOrderList.count
     }
     
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let orderItemForIdx = self.currentOrderList[indexPath.row]
         
         var cell = UITableViewCell()
-        if let orderItemCell = tableView.dequeueReusableCellWithIdentifier("orderItemTableViewCell", forIndexPath: indexPath) as? PRPBOrderItemTableViewCell {
+        if let orderItemCell = tableView.dequeueReusableCell(withIdentifier: "orderItemTableViewCell", for: indexPath) as? PRPBOrderItemTableViewCell {
             orderItemCell.orderItemKindLabel.text = orderItemForIdx.itemName
             orderItemCell.orderItemPriceLabel.text = "\(orderItemForIdx.itemPrice!)"
             orderItemCell.currentIdxPath = indexPath
@@ -65,7 +65,7 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
     }
     
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 84.0
     }
     
@@ -75,7 +75,11 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
         let allItemPrices = self.currentOrderList.map {return $0.itemPrice}
         let subTotal = allItemPrices.reduce(USD(0)) {return $0 + $1!}
         self.currCost.subtotal = subTotal
-        self.currCost.tax = USD(subTotal * 0.0625)
+        let taxRateStr = PRPBConfigManager.sharedInstance.valueForConfigSetting("taxRate") as! String
+        let taxRate = Double(taxRateStr)! / 100
+        let subTotalAmtRaw = taxRate *   subTotal.floatValue
+        let taxAmt = USD(subTotalAmtRaw)
+        self.currCost.tax = taxAmt
         self.orderParentVC?.currOrderCost = self.currCost
         self.orderParentVC?.updateCostLabels()
     }
@@ -94,21 +98,21 @@ class PRPBOrderTableViewController: UITableViewController, OrderEditDelegate {
 
 extension PRPBOrderTableViewController {
     // MARK: OrderEditDelegate
-    func addedOrderItem(orderItem: String, orderItemPrice: String) {
-        let item = PRPBOrderItem(itemName: orderItem, itemPrice: USD(Float(String(orderItemPrice.characters.dropFirst()))!))
+    func addedOrderItem(_ orderItem: String, orderItemPrice: String) {
+        let item = PRPBOrderItem(itemName: orderItem, itemPrice: USD(Float(String(orderItemPrice.characters))!))
         self.currentOrderList.append(item)
-        let idxPath = NSIndexPath(forRow: self.currentOrderList.count - 1, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([idxPath], withRowAnimation: UITableViewRowAnimation.Bottom)
+        let idxPath = IndexPath(row: self.currentOrderList.count - 1, section: 0)
+        self.tableView.insertRows(at: [idxPath], with: UITableViewRowAnimation.bottom)
         self.refreshTotalCost()
     }
     
     
-    func removedOrderItem(orderItem: String, orderItemPrice: String, indexPath: NSIndexPath) {
+    func removedOrderItem(_ orderItem: String, orderItemPrice: String, indexPath: IndexPath) {
         self.tableView.beginUpdates()
-        self.currentOrderList.removeAtIndex(indexPath.row)
-        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
-        let idxSet = NSIndexSet(index: 0)
-        self.tableView.reloadSections(idxSet, withRowAnimation: UITableViewRowAnimation.None)
+        self.currentOrderList.remove(at: indexPath.row)
+        self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.bottom)
+        let idxSet = IndexSet(integer: 0)
+        self.tableView.reloadSections(idxSet, with: UITableViewRowAnimation.none)
         self.tableView.endUpdates()
         self.refreshTotalCost()
     }
