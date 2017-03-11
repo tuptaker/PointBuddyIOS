@@ -7,23 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BDF4D121E67A97B00CD2296 /* Money.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDF4D111E67A97B00CD2296 /* Money.framework */; };
-		4BDF4D131E67A97B00CD2296 /* Money.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDF4D111E67A97B00CD2296 /* Money.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4BDF4D161E67A98300CD2296 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDF4D151E67A98300CD2296 /* SwiftyJSON.framework */; };
 		4BDF4D171E67A98300CD2296 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDF4D151E67A98300CD2296 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4BDF4D191E67A98900CD2296 /* ValueCoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDF4D181E67A98900CD2296 /* ValueCoding.framework */; };
-		4BDF4D1A1E67A98900CD2296 /* ValueCoding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDF4D181E67A98900CD2296 /* ValueCoding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4BDF4D1C1E67A98F00CD2296 /* ValueCoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDF4D1B1E67A98F00CD2296 /* ValueCoding.framework */; };
 		4BDF4D1D1E67A98F00CD2296 /* ValueCoding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDF4D1B1E67A98F00CD2296 /* ValueCoding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4BDF4D201E67A9F900CD2296 /* Money.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4BDF4D1F1E67A9F900CD2296 /* Money.framework.dSYM */; };
-		4BDF4D221E67AA0000CD2296 /* SwiftyJSON.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4BDF4D211E67AA0000CD2296 /* SwiftyJSON.framework.dSYM */; };
-		4BDF4D241E67AA0A00CD2296 /* ValueCoding.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4BDF4D231E67AA0A00CD2296 /* ValueCoding.framework.dSYM */; };
 		7901458A1CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790145881CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.swift */; };
 		7901458B1CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790145891CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib */; };
 		7901458E1CF793BF00DB7BB6 /* PRPBProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901458D1CF793BF00DB7BB6 /* PRPBProtocols.swift */; };
 		790145911CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901458F1CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift */; };
 		790145921CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790145901CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib */; };
-		791DECE91CF804EA0014E766 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791DECE81CF804EA0014E766 /* SwiftyJSON.framework */; };
 		7939C0B91CFB2A4C00CB401D /* PRPBOrderLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939C0B81CFB2A4C00CB401D /* PRPBOrderLogViewController.swift */; };
 		7939C0BB1CFB2D5000CB401D /* PRPBOrderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939C0BA1CFB2D5000CB401D /* PRPBOrderLog.swift */; };
 		7939C0BE1CFB431D00CB401D /* PRPBOrderLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939C0BC1CFB431D00CB401D /* PRPBOrderLogTableViewCell.swift */; };
@@ -33,8 +23,6 @@
 		795AD39B1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */; };
 		795AD39D1CF53D5D004A27AD /* PRPBMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */; };
 		795AD3A51CF54449004A27AD /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 795AD3A41CF54449004A27AD /* Menu.json */; };
-		798EF3D31CF8709A003C7B06 /* ValueCoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798EF3D21CF8709A003C7B06 /* ValueCoding.framework */; };
-		798EF3D51CF8709E003C7B06 /* Money.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798EF3D41CF8709E003C7B06 /* Money.framework */; };
 		79B63A6E1D02E49800E9FA6F /* PRPBCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B63A6D1D02E49800E9FA6F /* PRPBCost.swift */; };
 		79C16C921D08DCC700D3768C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C16C901D08DCC700D3768C /* Fabric.framework */; };
 		79C16C931D08DCC700D3768C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C16C911D08DCC700D3768C /* Crashlytics.framework */; };
@@ -75,10 +63,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4BDF4D1A1E67A98900CD2296 /* ValueCoding.framework in Embed Frameworks */,
 				4BDF4D171E67A98300CD2296 /* SwiftyJSON.framework in Embed Frameworks */,
 				4BDF4D1D1E67A98F00CD2296 /* ValueCoding.framework in Embed Frameworks */,
-				4BDF4D131E67A97B00CD2296 /* Money.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,28 +75,19 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				4BDF4D201E67A9F900CD2296 /* Money.framework.dSYM in CopyFiles */,
-				4BDF4D221E67AA0000CD2296 /* SwiftyJSON.framework.dSYM in CopyFiles */,
-				4BDF4D241E67AA0A00CD2296 /* ValueCoding.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4BDF4D111E67A97B00CD2296 /* Money.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Money.framework; path = Carthage/Build/iOS/Money.framework; sourceTree = "<group>"; };
-		4BDF4D151E67A98300CD2296 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		4BDF4D181E67A98900CD2296 /* ValueCoding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ValueCoding.framework; path = Carthage/Build/iOS/ValueCoding.framework; sourceTree = "<group>"; };
-		4BDF4D1B1E67A98F00CD2296 /* ValueCoding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ValueCoding.framework; path = Carthage/Build/iOS/ValueCoding.framework; sourceTree = "<group>"; };
-		4BDF4D1F1E67A9F900CD2296 /* Money.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Money.framework.dSYM; path = Carthage/Build/iOS/Money.framework.dSYM; sourceTree = "<group>"; };
-		4BDF4D211E67AA0000CD2296 /* SwiftyJSON.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftyJSON.framework.dSYM; path = Carthage/Build/iOS/SwiftyJSON.framework.dSYM; sourceTree = "<group>"; };
-		4BDF4D231E67AA0A00CD2296 /* ValueCoding.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ValueCoding.framework.dSYM; path = Carthage/Build/iOS/ValueCoding.framework.dSYM; sourceTree = "<group>"; };
+		4BDF4D151E67A98300CD2296 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "/Users/fabriciomachado/software-development/PointBuddyIOS/Point Buddy/Carthage/Build/iOS/SwiftyJSON.framework"; sourceTree = "<absolute>"; };
+		4BDF4D1B1E67A98F00CD2296 /* ValueCoding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ValueCoding.framework; path = "/Users/fabriciomachado/software-development/PointBuddyIOS/Point Buddy/Carthage/Build/iOS/ValueCoding.framework"; sourceTree = "<absolute>"; };
 		790145881CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		790145891CF7736D00DB7BB6 /* PRPBMenuItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRPBMenuItemTableViewCell.xib; sourceTree = "<group>"; };
 		7901458D1CF793BF00DB7BB6 /* PRPBProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBProtocols.swift; sourceTree = "<group>"; };
 		7901458F1CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderItemTableViewCell.swift; sourceTree = "<group>"; };
 		790145901CF79F5200DB7BB6 /* PRPBOrderItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRPBOrderItemTableViewCell.xib; sourceTree = "<group>"; };
-		791DECE81CF804EA0014E766 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		7939C0B81CFB2A4C00CB401D /* PRPBOrderLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderLogViewController.swift; sourceTree = "<group>"; };
 		7939C0BA1CFB2D5000CB401D /* PRPBOrderLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderLog.swift; sourceTree = "<group>"; };
 		7939C0BC1CFB431D00CB401D /* PRPBOrderLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderLogTableViewCell.swift; sourceTree = "<group>"; };
@@ -120,8 +97,6 @@
 		795AD39A1CF53AC2004A27AD /* PRPBOrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBOrderDetailViewController.swift; sourceTree = "<group>"; };
 		795AD39C1CF53D5D004A27AD /* PRPBMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBMenu.swift; sourceTree = "<group>"; };
 		795AD3A41CF54449004A27AD /* Menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Menu.json; sourceTree = "<group>"; };
-		798EF3D21CF8709A003C7B06 /* ValueCoding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ValueCoding.framework; path = Carthage/Build/iOS/ValueCoding.framework; sourceTree = "<group>"; };
-		798EF3D41CF8709E003C7B06 /* Money.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Money.framework; path = Carthage/Build/iOS/Money.framework; sourceTree = "<group>"; };
 		79B63A6D1D02E49800E9FA6F /* PRPBCost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRPBCost.swift; sourceTree = "<group>"; };
 		79C16C901D08DCC700D3768C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		79C16C911D08DCC700D3768C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -149,14 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				791DECE91CF804EA0014E766 /* SwiftyJSON.framework in Frameworks */,
-				4BDF4D121E67A97B00CD2296 /* Money.framework in Frameworks */,
-				4BDF4D191E67A98900CD2296 /* ValueCoding.framework in Frameworks */,
 				79C16C931D08DCC700D3768C /* Crashlytics.framework in Frameworks */,
-				798EF3D31CF8709A003C7B06 /* ValueCoding.framework in Frameworks */,
-				4BDF4D161E67A98300CD2296 /* SwiftyJSON.framework in Frameworks */,
-				4BDF4D1C1E67A98F00CD2296 /* ValueCoding.framework in Frameworks */,
-				798EF3D51CF8709E003C7B06 /* Money.framework in Frameworks */,
 				79C16C921D08DCC700D3768C /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,16 +221,6 @@
 		79FF25EC1CF3C45C00EEBDB2 = {
 			isa = PBXGroup;
 			children = (
-				4BDF4D231E67AA0A00CD2296 /* ValueCoding.framework.dSYM */,
-				4BDF4D211E67AA0000CD2296 /* SwiftyJSON.framework.dSYM */,
-				4BDF4D1F1E67A9F900CD2296 /* Money.framework.dSYM */,
-				4BDF4D1B1E67A98F00CD2296 /* ValueCoding.framework */,
-				4BDF4D181E67A98900CD2296 /* ValueCoding.framework */,
-				4BDF4D151E67A98300CD2296 /* SwiftyJSON.framework */,
-				4BDF4D111E67A97B00CD2296 /* Money.framework */,
-				798EF3D41CF8709E003C7B06 /* Money.framework */,
-				798EF3D21CF8709A003C7B06 /* ValueCoding.framework */,
-				791DECE81CF804EA0014E766 /* SwiftyJSON.framework */,
 				79FF25F71CF3C45D00EEBDB2 /* Point Buddy */,
 				79FF260F1CF3C45D00EEBDB2 /* Point BuddyTests */,
 				79FF261A1CF3C45D00EEBDB2 /* Point BuddyUITests */,
@@ -330,6 +288,7 @@
 				79C16C8F1D08DC7200D3768C /* ShellScript */,
 				4BDF4D141E67A97B00CD2296 /* Embed Frameworks */,
 				4BDF4D1E1E67A9B300CD2296 /* CopyFiles */,
+				7D828BC11E74683E00C790E0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -484,6 +443,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run e8398c35333567f25e14b92ee3ec3a335029cb24 c3ee5cce561e94ecb71cd94bf3aa68130e9fc2307bac73bfccc783a649c9db43";
+		};
+		7D828BC11E74683E00C790E0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Money.framework.dSYM",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ValueCoding.framework.dSYM",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 /* End PBXShellScriptBuildPhase section */
 
